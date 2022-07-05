@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>시험대비 read</title>
+    <script>
+        function getNo(){
+            const no = parseInt(location.search.substr(4))
+            if(isNaN(no))
+            return 1
+            return no
+        }
+
+        async function getResponse(api,no){
+            return await $.ajax(api+no);
+        }
+
+        function printContacts({no,name,address,tel,photo}){
+            $("#no").text(no);
+            $("#name").text(name);
+            $("#photo").attr('src',photo)
+            $("#address").text(address);
+            $("#tel").text(tel);
+            
+
+        }
+
+
+
+        $(document).ready(async function(){
+            const no = getNo();
+            const api = 'http://sample.bmaster.kro.kr/contacts/'
+            const response = await getResponse(api,no);
+            console.log(response)
+            printContacts(response)
+
+        })
+    </script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <td id="no"></td>
+            </tr>
+            <tr>
+                <td id="name"></td>
+            </tr>
+            <tr>
+                <td><img id="photo"></td>
+            </tr>
+            <tr>
+                <td id="address"></td>
+            </tr>
+            <tr>
+                <td id="tel"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

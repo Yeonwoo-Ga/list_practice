@@ -1,0 +1,23 @@
+#app{
+width: 800px;
+margin: 0 auto;
+}
+
+header,nav,footer{
+    height:50px;
+    background-color: bisque;
+    color : brown;
+}
+#main{
+    display:flex;
+    justify-content: space-between;
+}
+aside{
+    flex-grow: 1;
+    background-color:coral;
+    color:brown;
+}
+section{
+    flex-grow: 3;
+    min-height: 600px;
+}
